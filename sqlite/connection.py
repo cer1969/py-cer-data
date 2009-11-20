@@ -71,7 +71,7 @@ class Connection(sqlite3.Connection):
         
         # fetchTableById
         def _fetchTableById(idx):
-            data = _fetchTable("%s_id=?" % name, [idx])
+            data = _fetchTable("%s_idx=?" % name, [idx])
             val = data[0] if data else None
             return val
         self._reg_actions["fetch%sById" % capName] = _fetchTableById
@@ -82,7 +82,7 @@ class Connection(sqlite3.Connection):
             ftxt = ",".join(["%s_%s=?" % (name,x[0]) for x in items])
             values = [x[1] for x in items]
             values.append(idx)
-            query = "update %s set %s where %s_id=?" % (name, ftxt, name)
+            query = "update %s set %s where %s_idx=?" % (name, ftxt, name)
             self.alter(query, values)
         self._reg_actions["update%s" % capName] = _updateTable
         

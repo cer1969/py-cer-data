@@ -3,7 +3,7 @@
 # Fecha        : 24-09-2007 12:11:43   
 
 from __future__ import with_statement
-from cer.doc import excel
+from cer.data import excel
 
 #-----------------------------------------------------------------------------------------
 

@@ -35,6 +35,9 @@ class Connection(sqlite3.Connection):
         cur.close()
         return idx
     
+    def compact(self):
+        self.alter("VACUUM")
+    
     def fetch(self, query, params=[], maxsplit=None):
         # maxsplit: permite eliminar partes del inicio de los nombres
         # en los registros de salida

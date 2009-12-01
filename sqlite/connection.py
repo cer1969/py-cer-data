@@ -98,6 +98,12 @@ class Connection(sqlite3.Connection):
             query = "insert into %s (%s) values (%s)" % (name, ftxt, vtxt)
             return self.alter(query, values)
         self._reg_actions["insert%s" % capName] = _insertTable
+        
+        # deleteTableById
+        def _deleteTableById(idx):
+            query = "delete from %s where %s_idx=?" % (name, name)
+            self.alter(query, [idx])
+        self._reg_actions["delete%sById" % capName] = _deleteTableById        
 
 #-----------------------------------------------------------------------------------------
 

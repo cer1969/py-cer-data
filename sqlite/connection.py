@@ -26,7 +26,52 @@ def _get_records(cursor, maxsplit=None):
 
 #-----------------------------------------------------------------------------------------
 
+class Table(object):
+    
+    def __init__(self, db, viewName):
+        self.db = db
+        self.viewName = viewName
+        self.tableName = viewName.split("_")[-1] # necesario para eliminar el v_ en views
+    
+    def fetch(self, where="", params=[], orderby=""):
+        whe = ("where %s" % where) if (where != "") else ""
+        oby = ("order by %s" % orderby) if (orderby != "") else ""
+        query = "select * from %s %s %s" % (self.viewName, whe, oby)
+        return self.db.fetch(query, params, maxsplit=1)
+    
+    def get(self, idx):
+        data = self.fetch("%s_idx=?" % self.tableName, [idx])
+        val = data[0] if data else None
+        return val
+    
+    def update(self, idx, **kwa):
+        items = kwa.items()
+        ftxt = ",".join(["%s_%s=?" % (self.tableName, x[0]) for x in items])
+        values = [x[1] for x in items]
+        values.append(idx)
+        query = "update %s set %s where %s_idx=?" % (self.tableName, ftxt, self.tableName)
+        self.db.alter(query, values)
+    
+    def insert(self, **kwa):
+        items = kwa.items()
+        ftxt = ",".join(["%s_%s" % (self.tableName, x[0]) for x in items])
+        values = [x[1] for x in items]
+        vtxt = ",".join(["?"]*len(values))
+        query = "insert into %s (%s) values (%s)" % (self.tableName, ftxt, vtxt)
+        return self.db.alter(query, values)
+    
+    def delete(self, idx):
+        query = "delete from %s where %s_idx=?" % (self.tableName, self.tableName)
+        self.db.alter(query, [idx])
+
+#-----------------------------------------------------------------------------------------
+
 class Connection(sqlite3.Connection):
+    
+    def registerTables(self, *data):
+        for viewName in data:
+            t = Table(self, viewName)
+            setattr(self, t.tableName, t)
     
     def alter(self, query, params=[]):
         cur = self.cursor()
@@ -46,64 +91,6 @@ class Connection(sqlite3.Connection):
         Q = _get_records(cur, maxsplit)
         cur.close()
         return Q
-    
-    def __getattr__(self, name):
-        if self._reg_actions.has_key(name):
-            return self._reg_actions[name]
-        raise AttributeError("%s not implemented for %s" % (name, self.__class__))
-    
-    def regActions(self, *data):
-        # Registra metodos para obtener datos de tablas
-        # Este método debería ser llamado solo una vez
-        self._reg_actions = {}
-        
-        for i in data:
-            self._regTableActions(i)
-    
-    def _regTableActions(self, table):
-        name = table.split("_")[-1] # necesario para eliminar el v_ en views
-        capName = name.capitalize()
-        
-        # fetchTable
-        def _fetchTable(where="", params=[], orderby=""):
-            whe = ("where %s" % where) if (where != "") else ""
-            oby = ("order by %s" % orderby) if (orderby != "") else ""
-            query = "select * from %s %s %s" % (table, whe, oby)
-            return self.fetch(query, params, maxsplit=1)
-        self._reg_actions["fetch%s" % capName] = _fetchTable
-        
-        # fetchTableById
-        def _fetchTableById(idx):
-            data = _fetchTable("%s_idx=?" % name, [idx])
-            val = data[0] if data else None
-            return val
-        self._reg_actions["fetch%sById" % capName] = _fetchTableById
-        
-        # updateTable
-        def _updateTable(idx, **kwa):
-            items = kwa.items()
-            ftxt = ",".join(["%s_%s=?" % (name,x[0]) for x in items])
-            values = [x[1] for x in items]
-            values.append(idx)
-            query = "update %s set %s where %s_idx=?" % (name, ftxt, name)
-            self.alter(query, values)
-        self._reg_actions["update%s" % capName] = _updateTable
-        
-        # insertTable
-        def _insertTable(**kwa):
-            items = kwa.items()
-            ftxt = ",".join(["%s_%s" % (name,x[0]) for x in items])
-            values = [x[1] for x in items]
-            vtxt = ",".join(["?"]*len(values))
-            query = "insert into %s (%s) values (%s)" % (name, ftxt, vtxt)
-            return self.alter(query, values)
-        self._reg_actions["insert%s" % capName] = _insertTable
-        
-        # deleteTableById
-        def _deleteTable(idx):
-            query = "delete from %s where %s_idx=?" % (name, name)
-            self.alter(query, [idx])
-        self._reg_actions["delete%s" % capName] = _deleteTable        
 
 #-----------------------------------------------------------------------------------------
 

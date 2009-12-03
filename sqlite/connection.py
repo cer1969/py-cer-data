@@ -68,6 +68,22 @@ class Table(object):
 
 class Connection(sqlite3.Connection):
     
+    def loadTables(self):
+        # Identifica tablas y vistas en la base de datos y llama a registerTables
+        vq = self.fetch("select name from sqlite_master where type=?", ["view"])
+        tq = self.fetch("select name from sqlite_master where type=? and name <> ?",
+            ["table", "sqlite_sequence"]
+        )
+        views = [x.name for x in vq]
+        tables = [x.name for x in tq]
+        
+        tables_with_views = [x.split("_")[-1] for x in views]
+        
+        for i in tables:
+            if not (i in tables_with_views):
+                views.append(i)
+        self.registerTables(*views)
+    
     def registerTables(self, *data):
         for viewName in data:
             t = Table(self, viewName)

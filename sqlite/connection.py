@@ -39,16 +39,16 @@ class Table(object):
         query = "select * from %s %s %s" % (self.viewName, whe, oby)
         return self.db.fetch(query, params, maxsplit=1)
     
-    def get(self, idx):
-        data = self.fetch("%s_idx=?" % self.tableName, [idx])
+    def get(self, _idx):
+        data = self.fetch("%s_idx=?" % self.tableName, [_idx])
         val = data[0] if data else None
         return val
     
-    def update(self, idx, **kwa):
+    def update(self, _idx, **kwa):
         items = kwa.items()
         ftxt = ",".join(["%s_%s=?" % (self.tableName, x[0]) for x in items])
         values = [x[1] for x in items]
-        values.append(idx)
+        values.append(_idx)
         query = "update %s set %s where %s_idx=?" % (self.tableName, ftxt, self.tableName)
         self.db.alter(query, values)
     
@@ -60,9 +60,9 @@ class Table(object):
         query = "insert into %s (%s) values (%s)" % (self.tableName, ftxt, vtxt)
         return self.db.alter(query, values)
     
-    def delete(self, idx):
+    def delete(self, _idx):
         query = "delete from %s where %s_idx=?" % (self.tableName, self.tableName)
-        self.db.alter(query, [idx])
+        self.db.alter(query, [_idx])
 
 #-----------------------------------------------------------------------------------------
 

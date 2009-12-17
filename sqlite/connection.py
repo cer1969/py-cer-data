@@ -33,11 +33,12 @@ class Table(object):
         self.viewName = viewName
         self.tableName = viewName.split("_")[-1] # necesario para eliminar el v_ en views
     
-    def fetch(self, where="", params=[], orderby=""):
+    def fetch(self, where="", params=None, orderby=""):
         whe = ("where %s" % where) if (where != "") else ""
         oby = ("order by %s" % orderby) if (orderby != "") else ""
         query = "select * from %s %s %s" % (self.viewName, whe, oby)
-        return self.db.fetch(query, params, maxsplit=1)
+        prms = [] if params is None else params
+        return self.db.fetch(query, prms, maxsplit=1)
     
     def get(self, _idx):
         data = self.fetch("%s_idx=?" % self.tableName, [_idx])
@@ -89,9 +90,10 @@ class Connection(sqlite3.Connection):
             t = Table(self, viewName)
             setattr(self, t.tableName, t)
     
-    def alter(self, query, params=[]):
+    def alter(self, query, params=None):
         cur = self.cursor()
-        cur.execute(query, params)
+        prms = [] if params is None else params
+        cur.execute(query, prms)
         idx = cur.lastrowid
         cur.close()
         return idx
@@ -99,11 +101,12 @@ class Connection(sqlite3.Connection):
     def compact(self):
         self.alter("VACUUM")
     
-    def fetch(self, query, params=[], maxsplit=None):
+    def fetch(self, query, params=None, maxsplit=None):
         # maxsplit: permite eliminar partes del inicio de los nombres
         # en los registros de salida
         cur = self.cursor()
-        cur.execute(query, params)
+        prms = [] if params is None else params
+        cur.execute(query, prms)
         Q = _get_records(cur, maxsplit)
         cur.close()
         return Q

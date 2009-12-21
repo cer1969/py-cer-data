@@ -16,7 +16,7 @@ class _Record(dict):
     def __getattr__(self, name):
         return self[name]
 
-def _get_records(cursor, maxsplit=None):
+def _getRecords(cursor, maxsplit=None):
     # maxsplit: permite eliminar partes del inicio de los nombres
     names = [x[0] for x in cursor.description]
     if maxsplit:
@@ -107,7 +107,7 @@ class Connection(sqlite3.Connection):
         cur = self.cursor()
         prms = [] if params is None else params
         cur.execute(query, prms)
-        Q = _get_records(cur, maxsplit)
+        Q = _getRecords(cur, maxsplit)
         cur.close()
         return Q
 

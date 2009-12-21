@@ -9,13 +9,12 @@ import datetime
 
 #-----------------------------------------------------------------------------------------
 
-__all__ = ['get_excel_time', 'get_date', 'get_datetime', 'get_int', 'get_float',
-           'get_text'] 
+__all__ = ['getExcelTime', 'getDate', 'getDateTime', 'getInt', 'getFloat', 'getText'] 
 
 #-----------------------------------------------------------------------------------------
 # Python a Excel
 
-def get_excel_time(t):
+def getExcelTime(t):
     """Retorna Excel Time
     t: time tuple
     """
@@ -25,7 +24,7 @@ def get_excel_time(t):
 #-----------------------------------------------------------------------------------------
 # Excel a python
 
-def get_date(t):
+def getDate(t):
     """Retorna python datetime.date
     t: Excel Time"""
     try:
@@ -34,7 +33,7 @@ def get_date(t):
         nt = ""
     return nt
 
-def get_datetime(t):
+def getDateTime(t):
     """Retorna python datetime.datetime
     t: Excel Time"""
     try:
@@ -43,7 +42,7 @@ def get_datetime(t):
         nt = ""
     return nt
 
-def get_int(txt):
+def getInt(txt):
     """Retorna python int
     txt: string o objeto compatible con int
     """
@@ -53,7 +52,7 @@ def get_int(txt):
         value = 0
     return value
 
-def get_float(txt):
+def getFloat(txt):
     """Retorna python float
     txt: string o objeto compatible con float
     """
@@ -63,7 +62,7 @@ def get_float(txt):
         value = 0.0
     return value
 
-def get_text(txt):
+def getText(txt):
     """Retorna python string o unicode
     txt: string o objeto compatible con string
     """

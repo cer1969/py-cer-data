@@ -16,7 +16,7 @@ filename = r"C:\Documents and Settings\cecheverria\Mis documentos\Demanda ATR-3 
 # aún cuando falle la creación del Book.
 # Si se requiere usar el objeto Application: Book y Sheet tienen referencias
 """
-with excel.book_context(filename, True) as bk:
+with excel.bookContext(filename, True) as bk:
     sh = bk.GetSheet(1)
     print sh.NRows, sh.NCols
     r = sh.GetRow(12)

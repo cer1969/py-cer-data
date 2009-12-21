@@ -17,7 +17,7 @@ pythoncom.__future_currency__ = True
 
 #-----------------------------------------------------------------------------------------
 
-__all__ = ['app_context', 'book_context', 'Application', 'Book', 'Sheet',
+__all__ = ['appContext', 'bookContext', 'Application', 'Book', 'Sheet',
            'APP_QUITOK', 'APP_QUITFAIL_WASOPEN', 'APP_QUITFAIL_HASWBKS',
            'BOOK_CLOSEOK', 'BOOK_CLOSEFAIL_WASOPEN',
            'APP_WINDOWSTATE_MIN', 'APP_WINDOWSTATE_MAX', 'APP_WINDOWSTATE_NOR'] 
@@ -25,7 +25,7 @@ __all__ = ['app_context', 'book_context', 'Application', 'Book', 'Sheet',
 #-----------------------------------------------------------------------------------------
 
 @contextmanager
-def app_context():
+def appContext():
     """Permite usar Application con with statement"""
     app = Application()
     try:
@@ -35,7 +35,7 @@ def app_context():
 
 
 @contextmanager
-def book_context(filename, readOnly=True):
+def bookContext(filename, readOnly=True):
     """Permite usar Book con with statement"""
     app = Application()
     try:

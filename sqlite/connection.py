@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import sqlite3
-import datetime # requerido por sqlite3
+import os, sqlite3, datetime # requerido por sqlite3
 
 #-----------------------------------------------------------------------------------------
 
-__all__ = ['connect']
+__all__ = ['connect', 'copyDataBase', 'compactFile']
 
 #-----------------------------------------------------------------------------------------
 # Record factory for sqlite3
@@ -70,19 +69,23 @@ class Table(object):
 class Connection(sqlite3.Connection):
     # TODO: Incorporar métodos para verificar que es una data nueva, verificar tablas y crear nuevas
     
+    def getViewsInfo(self):
+        return self.fetch("select * from sqlite_master where type=?", ["view"])
+    
+    def getTablesInfo(self):
+        tq = self.fetch("select * from sqlite_master where type=?", ["table"])
+        return [x for x in tq if not(x.name.startswith("sqlite_"))]
+    
     def loadTables(self):
         # Identifica tablas y vistas en la base de datos y llama a registerTables
-        vq = self.fetch("select name from sqlite_master where type=?", ["view"])
-        tq = self.fetch("select name from sqlite_master where type=?", ["table"])
-        
-        views = [x.name for x in vq]
-        tables = [x.name for x in tq if not(x.name.startswith("sqlite_"))]
+        views = [x.name for x in self.getViewsInfo()]
+        tables = [x.name for x in self.getTablesInfo()]
         
         tables_with_views = [x.split("_")[-1] for x in views]
-        
         for i in tables:
             if not (i in tables_with_views):
                 views.append(i)
+        
         self.registerTables(*views)
     
     def registerTables(self, *data):
@@ -98,8 +101,8 @@ class Connection(sqlite3.Connection):
         cur.close()
         return idx
     
-    def compact(self):
-        self.alter("VACUUM")
+    #def compact(self):
+    #    self.alter("VACUUM")
     
     def fetch(self, query, params=None, maxsplit=None):
         # maxsplit: permite eliminar partes del inicio de los nombres
@@ -119,3 +122,45 @@ def connect(filename):
         factory=Connection
     )
     return db
+
+
+def copyDataBase(db1, db2):
+    """ Copia contenidos de db1 a db2
+    """
+    cur1 = db1.cursor()
+    cur2 = db2.cursor()
+    
+    # Crea tablas de db1 en db2
+    for t in db1.getTablesInfo():
+        cur2.execute(t.sql)
+        
+        cur1.execute("select * from %s" % t.name)
+        data = cur1.fetchall()
+        
+        query = "insert into %s values (%s)" % (t.name, ",".join(["?"]*len(data[0])))
+        cur2.executemany(query, data)
+    
+    for v in db1.getViewsInfo():
+        db2.execute(v.sql)
+    
+    db2.commit()
+
+
+def compactFile(filename):
+    """ Compacta filename copiando su contenido a memoria y restituyendolo
+        en el mismo archivo. Requiere que filename no este abierto.
+    """
+    db = connect(filename)
+    dbm = connect(":memory:")
+    
+    # Copiamos de db filename a memoria
+    copyDataBase(db, dbm)
+    
+    # Borra db filename
+    db.close()
+    os.remove(filename)
+    
+    # Restaura datos de dbm a db filename
+    db = connect(filename)
+    copyDataBase(dbm, db)
+    db.close()

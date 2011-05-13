@@ -68,15 +68,15 @@ class Table(object):
 #-----------------------------------------------------------------------------------------
 
 class Connection(sqlite3.Connection):
+    # TODO: Incorporar métodos para verificar que es una data nueva, verificar tablas y crear nuevas
     
     def loadTables(self):
         # Identifica tablas y vistas en la base de datos y llama a registerTables
         vq = self.fetch("select name from sqlite_master where type=?", ["view"])
-        tq = self.fetch("select name from sqlite_master where type=? and name <> ?",
-            ["table", "sqlite_sequence"]
-        )
+        tq = self.fetch("select name from sqlite_master where type=?", ["table"])
+        
         views = [x.name for x in vq]
-        tables = [x.name for x in tq]
+        tables = [x.name for x in tq if not(x.name.startswith("sqlite_"))]
         
         tables_with_views = [x.split("_")[-1] for x in views]
         
@@ -115,7 +115,7 @@ class Connection(sqlite3.Connection):
 
 def connect(filename):
     db = sqlite3.connect(filename, 
-        detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES,
+        detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES, 
         factory=Connection
     )
     return db

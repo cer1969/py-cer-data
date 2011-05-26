@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os, sqlite3, datetime # requerido por sqlite3
+import weakref, os, sqlite3, datetime # requerido por sqlite3
 
 #-----------------------------------------------------------------------------------------
 
@@ -28,7 +28,7 @@ def _getRecords(cursor, maxsplit=None):
 class Table(object):
     
     def __init__(self, db, viewName):
-        self.db = db
+        self.db = weakref.proxy(db)
         self.viewName = viewName
         self.tableName = viewName.split("_")[-1] # necesario para eliminar el v_ en views
     

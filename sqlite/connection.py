@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import weakref, os, sqlite3, datetime # requerido por sqlite3
+import weakref, os, sqlite3 #, datetime # requerido por sqlite3
 
 #-----------------------------------------------------------------------------------------
 

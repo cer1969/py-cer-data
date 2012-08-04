@@ -1,0 +1,642 @@
+[
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 0, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 1, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 2, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 3, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 4, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 5, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 6, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 7, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 8, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }, 
+    {
+        "malo": [
+            false, 
+            null
+        ], 
+        "values": [
+            [
+                "ID", 
+                "VALUE"
+            ], 
+            [
+                100, 
+                1
+            ], 
+            [
+                200, 
+                2
+            ], 
+            [
+                300, 
+                3
+            ], 
+            [
+                400, 
+                {
+                    "__arg__": [
+                        8, 
+                        30, 
+                        0, 
+                        0
+                    ], 
+                    "__kwa__": {}, 
+                    "__class__": "time"
+                }
+            ]
+        ], 
+        "user": {
+            "birdth": {
+                "__arg__": [
+                    1969, 
+                    12, 
+                    28
+                ], 
+                "__kwa__": {}, 
+                "__class__": "date"
+            }, 
+            "name": "Ju\u00e1n Araya"
+        }, 
+        "idx": 9, 
+        "stamp": {
+            "__arg__": [
+                2012, 
+                8, 
+                4, 
+                17, 
+                43, 
+                8, 
+                0
+            ], 
+            "__kwa__": {}, 
+            "__class__": "datetime"
+        }, 
+        "msg": "Ni\u00f1o malo canta una canci\u00f3n\nMuy bonita."
+    }
+]

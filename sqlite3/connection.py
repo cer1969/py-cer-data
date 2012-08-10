@@ -185,10 +185,10 @@ def copyDataBase(db1, db2):
         cur2.execute(t.sql)
         
         cur1.execute("select * from %s" % t.name)
-        data = cur1.fetchall()
-        
-        query = "insert into %s values (%s)" % (t.name, ",".join(["?"]*len(data[0])))
-        cur2.executemany(query, data)
+        data = cur1.fetchall()        
+        if data:
+            query = "insert into %s values (%s)" % (t.name, ",".join(["?"]*len(data[0])))
+            cur2.executemany(query, data)
     
     # Copia indices
     for i in db1.indexesinfo:

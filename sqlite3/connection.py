@@ -137,7 +137,7 @@ class Connection(sqlite3.Connection):
     
     def fetch(self, query, params=None):
         cur = self.cursor()
-        prms = [] if params is None else params        
+        prms = [] if params is None else params
         cur.execute(query, prms)
         Q = cur.fetchall()
         cur.close()

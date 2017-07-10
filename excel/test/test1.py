@@ -30,7 +30,7 @@ app = excel.Application()
 #bk = app.Workbooks.Add(Template=tpl)
 bk = app.addBook(Template=tpl)
 sh = bk.getSheet("Hoja1")
-print sh.Name
+print (sh.Name)
 app.Visible = True
 app.quit()
 

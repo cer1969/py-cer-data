@@ -39,7 +39,7 @@ class Sheet(object):
 
     def get_data(self, rows, cols, dict_class=Munch):
         it = self.iter_data(rows, cols)
-        headers = [c.value for c in next(it)]
+        headers = [c.value.lower() for c in next(it)]
         data = []
         for r in it:
             data.append(dict_class(zip(headers, [c.value for c in r])))

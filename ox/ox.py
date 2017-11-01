@@ -1,7 +1,6 @@
 # CRISTIAN ECHEVERRÍA RABÍ
 
 import openpyxl as ox
-from munch import Munch
 
 #---------------------------------------------------------------------------------------------------
 
@@ -37,7 +36,7 @@ class Sheet(object):
     def iter_data(self, rows=(1, None), cols=(1, None)):
         return self._sh.iter_rows(min_row=rows[0], max_row=rows[1], min_col=cols[0], max_col=cols[1])
 
-    def get_data(self, rows, cols, dict_class=Munch):
+    def get_data(self, rows, cols, dict_class=dict):
         it = self.iter_data(rows, cols)
         headers = [c.value.lower() for c in next(it)]
         data = []

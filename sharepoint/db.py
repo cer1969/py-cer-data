@@ -15,7 +15,10 @@ class Type:
 
     def get(self):
         r = {
-            "__metadata": { "type": self.type, "addToDefaultView": True },
+            "__metadata": { 
+                "type": self.type, 
+                #"addToDefaultView": True
+            },
             "FieldTypeKind": self.typeKind,
         }
         r.update(self.kwa)
@@ -23,10 +26,10 @@ class Type:
 
 
 class TypeNumber(Type):
-    def __init__(self, decimalPlaces=0, min=None, max=None) -> None:
-        super().__init__("SP.FieldNumber", 9, {"DecimalPlaces": decimalPlaces})
-        if min is not None: self.kwa["Min"] = min
-        if max is not None: self.kwa["Max"] = max
+    def __init__(self, decimals=0, min=None, max=None) -> None:
+        super().__init__("SP.FieldNumber", 9, {"DisplayFormat": decimals})
+        if min is not None: self.kwa["MinimumValue"] = min
+        if max is not None: self.kwa["MaximumValue"] = max
 
 
 class TypeText(Type):
@@ -68,7 +71,7 @@ class Field:
             "Description": self.description
         })
         if self.required: r["Required"] = self.required
-        if self.unique: r["EnforceUniqueValues"] = self.unique
+        #if self.unique: r["EnforceUniqueValues"] = self.unique
         if self.default is not None: r["DefaultValue"] = self.default
         return r
     
@@ -129,11 +132,11 @@ class List:
     
     def get(self):
         return {
-            "List": self.name,
-            "Create": self.get_create(),
+            "ListName": self.name,
+            "CreateList": self.get_create(),
             #"Fix": FIX_TITLE,
-            "CreteFields": self.get_create_fields(),
-            "CreteIndexes": self.get_create_indexes()
+            "CreateFields": self.get_create_fields(),
+            #"CreateIndexes": self.get_create_indexes()
         }
     
     def json(self):

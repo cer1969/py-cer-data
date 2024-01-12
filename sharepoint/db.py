@@ -103,13 +103,14 @@ FIX_TITLE = {
 #-----------------------------------------------------------------------------------------
 
 class List:
-    def __init__(self, name, pk, *fields, allowContentTypes=False):
+    def __init__(self, name, pk, *fields, allowContentTypes=False, data=[]):
         #self.pk = weakref.proxy(pk)
         self.pk = pk
         self.fields = [pk, *fields]
 
         self.name = name
         self.allowContentTypes = allowContentTypes
+        self.data = data
         self.type = "SP.List"
         self.template = 100
     
@@ -130,12 +131,18 @@ class List:
             if i.index: s.append( i.get_index(self.name) )
         return s
     
+    def get_data(self):
+        type = f"SP.Data.{self.name}ListItem"
+        return [{"__metadata": {"type": type}, **x} for x in self.data ]
+        
+
     def get(self):
         return {
             "ListName": self.name,
             "CreateList": self.get_create(),
             #"Fix": FIX_TITLE,
             "CreateFields": self.get_create_fields(),
+            "Data": self.get_data()
             #"CreateIndexes": self.get_create_indexes()
         }
     

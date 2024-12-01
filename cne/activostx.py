@@ -11,12 +11,19 @@ BASE_URL = "https://activos-tx-prod.appspot.com/api/v1/"
 
 class Table:
     
-    def __init__(self, name):
+    def __init__(self, name, **filters):
         self.name = name
+        self.filters = filters
         self.url = f"{BASE_URL}{name}/"
     
+    @property
+    def config(self):
+        return f"Tabla '{self.name}' - Filtros: {self.filters}"
+
     def get(self, **kw):
-        r = requests.get(self.url, params=kw)
+        params = {}
+        params.update(**self.filters, **kw)
+        r = requests.get(self.url, params=params)
         data = r.json()
         return data
     
@@ -63,29 +70,3 @@ if __name__ == "__main__":
     # print(len(data))
     # item = t.get_by_id(8)
     # print(item)
-
-# import pandas as pd
-
-# people = [
-#     {'name': 'Alice', 'age': 25, 'city': 'New York'},
-#     {'name': 'Bob', 'age': 30, 'city': 'Chicago'},
-#     {'name': 'Charlie', 'age': 35, 'city': 'Los Angeles'}
-# ]
-
-# # Crear el DataFrame y establecer 'name' como índice
-# df = pd.DataFrame(people).set_index('name')
-
-# print(df)
-
-# En la distribución normal (campana de Gauss), los porcentajes de datos que se cubren con desviaciones estándar son los siguientes:
-
-# 1. Una desviación estándar (±1σ): Aproximadamente el 68.27% de los datos
-# 2. Dos desviaciones estándar (±2σ): Aproximadamente el 95.45% de los datos
-# 3. Tres desviaciones estándar (±3σ): Aproximadamente el 99.73% de los datos
-
-# Estos porcentajes se conocen como la "regla empirica" o "regla 68-95-99.7" en estadística. Esto significa que:
-# - Cerca del 68% de los datos están dentro de una desviación estándar de la media
-# - Cerca del 95% de los datos están dentro de dos desviaciones estándar de la media
-# - Casi el 99.7% de los datos están dentro de tres desviaciones estándar de la media
-
-# Es importante recordar que estos porcentajes son precisos solo para distribuciones que siguen una distribución normal (campana de Gauss).
